@@ -1,0 +1,1 @@
+enum APPIdentifierTypeEnum { email, phone }

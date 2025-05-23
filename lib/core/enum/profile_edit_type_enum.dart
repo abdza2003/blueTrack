@@ -1,0 +1,17 @@
+enum ProfileEditTypeEnum {
+  work,
+  bio,
+  color,
+  city,
+  fullName,
+  email,
+  phoneNumber,
+  dateOfBirth,
+  gender,
+  userName,
+  generalInfo,
+  picture,
+  coverPicture,
+  education,
+  academy,
+}

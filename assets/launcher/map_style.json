@@ -1,0 +1,66 @@
+[
+    {
+        "tags": {
+            "all": [
+                "road",
+                "highway"
+            ],
+            "any": [
+                "main",
+                "secondary"
+            ],
+            "none": [
+                "pedestrian"
+            ]
+        },
+        "types": [
+            "line",
+            "polygon"
+        ],
+        "elements": [
+            "geometry",
+            "labels"
+        ],
+        "stylers": {
+            "zoom": [
+                10,
+                20
+            ],
+            "visibility": "on",
+            "hue": "#fb3838",
+            "saturation": 0.5,
+            "lightness": -0.2,
+            "color": "#fb3838",
+            "opacity": 0.8,
+            "scale": 1.2
+        }
+    },
+    {
+        "tags": {
+            "all": [
+                "water"
+            ],
+            "any": [],
+            "none": []
+        },
+        "types": [
+            "polygon"
+        ],
+        "elements": [
+            "geometry"
+        ],
+        "stylers": {
+            "zoom": [
+                5,
+                15
+            ],
+            "visibility": "on",
+            "hue": "#fb3838",
+            "saturation": -0.5,
+            "lightness": 0.3,
+            "color": "#fb3838",
+            "opacity": 0.6,
+            "scale": 1.0
+        }
+    }
+]

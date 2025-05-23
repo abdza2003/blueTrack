@@ -1,0 +1,4 @@
+enum ShareRoutesEnum {
+  vendor,
+  product,
+}
