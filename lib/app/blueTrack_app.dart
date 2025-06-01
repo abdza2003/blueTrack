@@ -1,11 +1,13 @@
 import 'package:bluetrack/controller/device/device_controller.dart';
 import 'package:bluetrack/core/theme/theme.dart';
 import 'package:bluetrack/route_generate.dart';
+import 'package:bluetrack/view/start/onboarding_screen.dart';
 import 'package:bluetrack/view/start/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 class BlueTrackApp extends StatefulWidget {
   const BlueTrackApp._internal();
@@ -35,6 +37,7 @@ class _BlueTrackAppState extends State<BlueTrackApp> {
           splitScreenMode: true,
           builder: (context, child) {
             return MaterialApp(
+              title: 'ActiView',
               theme: CustomTheme().buildThemeData(context),
               darkTheme: CustomTheme().buildThemeDataDark(context),
               themeMode: deviceInfo,
@@ -45,7 +48,7 @@ class _BlueTrackAppState extends State<BlueTrackApp> {
               navigatorObservers: [
                 CustomRouteObserver(),
               ], // أضف الـ Observer هنا
-              // home: BluetoothScreen(),
+              home: OnboardingScreen(),
               // home: const ProductDetailsScreen(
               //   variantId: 62,
               //   hashId: 'a1ybZy05',

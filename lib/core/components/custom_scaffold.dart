@@ -65,6 +65,7 @@ class CustomScaffold extends StatelessWidget {
         key: key,
         resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor ?? context.background,
+
         navigationBar:
             nestedScrollView
                 ? null
@@ -79,7 +80,7 @@ class CustomScaffold extends StatelessWidget {
                   previousPageTitle: previousPageTitle,
                   middle: Txt(
                     text: title,
-                    fontSize: 13.6.sp,
+                    fontSize: 14.6.sp,
                     enableAutoSize: true,
                     color: context.inverse,
                     fontWeight: FontWeight.w500,
@@ -107,7 +108,7 @@ class CustomScaffold extends StatelessWidget {
                         ),
                         middle: Txt(
                           text: title,
-                          fontSize: 13.6.sp,
+                          fontSize: 14.6.sp,
                           enableAutoSize: true,
                           color: context.inverse,
                           fontWeight: FontWeight.w500,
@@ -146,7 +147,7 @@ class CustomScaffold extends StatelessWidget {
                   iconTheme: IconThemeData(color: context.inverse),
                   title: Txt(
                     text: title,
-                    fontSize: 13.2.sp,
+                    fontSize: 14.2.sp,
                     enableAutoSize: true,
                     color: androidAppbarColor ?? context.inverse,
                     fontWeight: FontWeight.w500,

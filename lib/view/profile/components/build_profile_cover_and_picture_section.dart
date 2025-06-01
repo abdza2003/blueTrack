@@ -45,7 +45,7 @@ class _BuildProfileCoverAndPictureSectionState
               children: [
                 _buildBackgroundImage(
                   context,
-                  ImageConstant.instance.onboarding1,
+                  ImageConstant.instance.onboarding2,
                 ),
                 _buildProfileAvatar(context),
               ],

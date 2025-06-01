@@ -37,7 +37,8 @@ class ColorConstants {
   final doneColor = HexColor('#39D249');
   final postBackgroundMainColor = '#03a9f4';
   final primaryHexColor = '#1A1A1A';
-  final primary = CupertinoColors.activeBlue;
+  // final primary = CupertinoColors.activeBlue;
+  final primary = HexColor("#CA7842");
   final errorColor = HexColor('#F34A63');
   final darkColor = HexColor('#212121');
   final lightModeBackground = HexColor('#f5f5f5');

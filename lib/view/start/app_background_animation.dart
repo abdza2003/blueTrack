@@ -23,10 +23,10 @@ class APPBakgroundAnimation extends StatelessWidget {
                 shaderCallback: (Rect bounds) {
                   return LinearGradient(
                     colors: [
-                      HexColor('#42A5F5'),
-                      HexColor('#42A5F5'),
-                      HexColor('#26C6DA'),
-                      HexColor('#26C6DA'),
+                      HexColor('#CA7842').withOpacity(.8),
+                      HexColor('#CA7842').withOpacity(.75),
+                      HexColor('#CA7842').withOpacity(.7),
+                      HexColor('#CA7842').withOpacity(.65),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,

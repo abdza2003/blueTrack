@@ -14,7 +14,7 @@
 
 
     <application
-        android:label="BlueTrack"
+        android:label="ActiView"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
     

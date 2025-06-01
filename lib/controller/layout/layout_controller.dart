@@ -88,18 +88,18 @@ class LayoutController extends ILayoutController {
       }
     }
 
-    // // إذا تم الضغط على نفس الـ index مرتين في وقت قريب
-    // if (lastTabClickTime != null &&
-    //     DateTime.now().difference(lastTabClickTime!).inMilliseconds < 500 &&
-    //     selectedIndex == index) {
-    //   if (key.currentContext != null) {
-    //     if (Navigator.canPop(key.currentContext!)) {
-    //       _navigateToInitialPage(key);
-    //     } else {
-    //       // إذا لم يكن بإمكانك الرجوع، لا تفعل شيئًا
-    //     }
-    //   }
-    // }
+    // إذا تم الضغط على نفس الـ index مرتين في وقت قريب
+    if (lastTabClickTime != null &&
+        DateTime.now().difference(lastTabClickTime!).inMilliseconds < 500 &&
+        selectedIndex == index) {
+      if (key.currentContext != null) {
+        if (Navigator.canPop(key.currentContext!)) {
+          _navigateToInitialPage(key);
+        } else {
+          // إذا لم يكن بإمكانك الرجوع، لا تفعل شيئًا
+        }
+      }
+    }
 
     selectedIndex = index;
     notifyListeners();

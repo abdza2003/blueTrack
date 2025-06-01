@@ -119,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _buildHeaderText() {
     return Txt(
-      text: 'Start your journey with BlueTrack'.toUpperCase(),
+      text: 'Start your journey with ActiView'.toUpperCase(),
       fontWeight: FontWeight.bold,
       maxLines: 1,
       textAlign: TextAlign.center,

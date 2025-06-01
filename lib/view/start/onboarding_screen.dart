@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Transform.translate(
                     offset: Offset(0, -40.h),
                     child: Image.asset(
-                      ImageConstant.instance.onboarding1,
+                      ImageConstant.instance.onboarding2,
                       height: context.phoneHeight(),
                       width: context.phoneWidth(),
                       fit: BoxFit.cover,
@@ -120,6 +120,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
+  List<String> desc = [
+    "Easily track and oversee visitors activity",
+    "Get instant insights on movement patterns ",
+    "Enhance visitors flow and elevate the overall experience",
+  ];
+
   // دالة لبناء BottomCard أو LoginScreen بناءً على ValueNotifier
   Widget _buildBottomCardOrLogin(BuildContext context) {
     return ValueListenableBuilder<bool>(
@@ -154,10 +160,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(flex: 3),
+                    const Spacer(flex: 2),
                     _buildHeaderText(),
                     SpaceConstant.instance.heightSmall,
-                    _buildDescriptionText(context),
+                    _buildDescriptionText(
+                      context,
+                      "With ActiView, easily track and monitor visitor activity, gain instant insights into movement patterns, and optimize visitor flow to elevate the overall experience",
+                    ),
                     const Spacer(flex: 7),
                     _buildGetStartedButton(context),
                     _buildSignInTextButton(context),
@@ -185,57 +194,36 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  // دالة لبناء BottomCard
-  Widget _buildBottomCard(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.easeInOut,
-      height: context.phoneHeight() * _bottomCardHeight, // التحكم في الارتفاع
-      width: context.phoneWidth(),
-      decoration: BoxDecoration(
-        color: context.onBackground,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
+  Widget _buildHeaderText() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Spacer(flex: 3),
-          _buildHeaderText(),
-          SpaceConstant.instance.heightMedium,
-          _buildDescriptionText(context),
-          const Spacer(flex: 7),
-          _buildGetStartedButton(context),
-          _buildSignInTextButton(context),
-          // const Spacer(flex: 1),
+          Image.asset(
+            ImageConstant.instance.newLogo,
+            height: 40.h,
+            width: context.phoneHeight(),
+            color: ColorConstants.instance.primary,
+          ),
+          SpaceConstant.instance.heightSmall,
+          Txt(
+            text: 'ActiView',
+            fontSize: 20.sp,
+            color: context.inverse.withOpacity(.8),
+            fontWeight: FontWeight.w600,
+            family: FontFamilyEnum.enSora.rawValue,
+            letterSpacing: .6,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildHeaderText() {
+  Widget _buildDescriptionText(BuildContext context, String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Txt(
-        text: 'Welcome to the BlueTrack app',
-        maxLines: 2,
-        textAlign: TextAlign.center,
-        family: FontFamilyEnum.enSora.rawValue,
-        letterSpacing: .4,
-        fontWeight: FontWeight.bold,
-        fontSize: 16.sp,
-      ),
-    );
-  }
-
-  Widget _buildDescriptionText(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      child: Txt(
-        text:
-            'Track your movements within your surroundings and get the best results with detailed daily analytics that help you understand and improve your activity patterns.',
+        text: text,
         fontWeight: FontWeight.w400,
         textAlign: TextAlign.center,
         family: FontFamilyEnum.enInter.rawValue,

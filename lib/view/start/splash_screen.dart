@@ -8,6 +8,7 @@ import 'package:bluetrack/core/components/txt.dart';
 import 'package:bluetrack/core/constants/color_constant.dart';
 import 'package:bluetrack/core/constants/image_constant.dart';
 import 'package:bluetrack/core/constants/local_constant.dart';
+import 'package:bluetrack/core/constants/padding_and_margin_constant.dart';
 import 'package:bluetrack/core/constants/space_constant.dart';
 import 'package:bluetrack/core/enum/font_family_enum.dart';
 import 'package:bluetrack/core/extension/color_extansion.dart';
@@ -98,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         SpaceConstant.instance.heightSmall,
         Txt(
-          text: 'BlueTrack',
+          text: 'ActiView',
           fontSize: 20.sp,
           color: context.inverse.withOpacity(.8),
           fontWeight: FontWeight.w600,
@@ -106,14 +107,17 @@ class _SplashScreenState extends State<SplashScreen> {
           letterSpacing: .6,
         ),
         SpaceConstant.instance.heightXSmall,
-        Txt(
-          text: 'Make your life easier with BlueTrack',
-          fontSize: 12.sp,
-          color: context.inverse.withOpacity(.8),
-          fontWeight: FontWeight.w600,
-          textAlign: TextAlign.center,
-          family: FontFamilyEnum.enSora.rawValue,
-          letterSpacing: .6,
+        Padding(
+          padding: PaddingAndMarginConstant.instance.symmetricHorizontalSmall,
+          child: Txt(
+            text: 'Master the art of visitors movement with ActiView',
+            fontSize: 12.sp,
+            color: context.inverse.withOpacity(.8),
+            fontWeight: FontWeight.w600,
+            textAlign: TextAlign.center,
+            family: FontFamilyEnum.enSora.rawValue,
+            letterSpacing: .6,
+          ),
         ),
       ],
     );

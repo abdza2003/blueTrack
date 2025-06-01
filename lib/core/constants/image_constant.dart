@@ -166,4 +166,7 @@ class ImageConstant {
   final String linkIcon = "${ImageMenuEnum.icon.rawValue}/link.png";
   final String gmailIcon = "${ImageMenuEnum.icon.rawValue}/gmail.png";
   final String whatsappIcon = "${ImageMenuEnum.icon.rawValue}/whatsapp.png";
+  final String cloudWifi1 = "${ImageMenuEnum.icon.rawValue}/cloud_wifi (1).png";
+  final String cloudWifi2 = "${ImageMenuEnum.icon.rawValue}/cloud_wifi (2).png";
+  final String bluetooth1 = "${ImageMenuEnum.icon.rawValue}/bluetooth (1).png";
 }
