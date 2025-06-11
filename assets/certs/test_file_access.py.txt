@@ -1,7 +1,0 @@
-file_path = r"D:\Cloud ActivityRec\1f517192598cbed5c547cb2b5b38eb14f31fe1aa33f4c1d7084057a348c18eb5-certificate.pem"
-
-try:
-    with open(file_path, "r") as f:
-        print("File opened successfully!")
-except Exception as e:
-    print(f"Error opening file: {e}")

@@ -41,6 +41,3 @@ flutter:
     - assets/launcher/
     - assets/lottie/
     - assets/lang/
-    - assets/certs/AmazonRootCA1.pem
-    - assets/certs/1f517192598cbed5c547cb2b5b38eb14f31fe1aa33f4c1d7084057a348c18eb5-certificate.pem.crt
-    - assets/certs/1f517192598cbed5c547cb2b5b38eb14f31fe1aa33f4c1d7084057a348c18eb5-private.pem.key
