@@ -1,4 +1,5 @@
 // lib/view/profile/profile_screen.dart
+import 'package:bluetrack/core/components/blue_and_mqtt_config_bottm_sheet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -78,32 +79,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                   title: 'Bluetooth',
                   svgIcon: ImageConstant.instance.bluetooth,
                   isSvgIcon: false,
-                  onTap: () {},
+                  onTap:
+                      () async =>
+                          await blueConfigConfigBottomSheetPage(context),
                 ),
                 _buildCustomListTile(
                   title: 'MQTT Config',
                   svgIcon: ImageConstant.instance.cloudWifi2,
                   isSvgIcon: false,
-                  onTap: () async {
-                    final result = await Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const MqttConfigPage()),
-                    );
-                    if (result != null && result is Map) {
-                      final broker = result['broker'];
-                      final topic = result['topic'];
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (_) => ActivityMonitorPage(
-                                broker: broker,
-                                topic: topic,
-                              ),
-                        ),
-                      );
-                    }
-                  },
+                  onTap: () async => await mqttConfigBottomSheetPage(context),
                 ),
               ],
             ),

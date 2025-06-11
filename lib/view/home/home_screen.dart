@@ -3,6 +3,7 @@
 import 'dart:math';
 
 import 'package:bluetrack/controller/layout/layout_controller.dart';
+import 'package:bluetrack/core/components/blue_and_mqtt_config_bottm_sheet_page.dart';
 import 'package:bluetrack/core/components/custom_scaffold.dart';
 import 'package:bluetrack/core/components/txt.dart';
 import 'package:bluetrack/core/constants/color_constant.dart';
@@ -16,6 +17,7 @@ import 'package:bluetrack/core/extension/font_family_extansion.dart';
 import 'package:bluetrack/core/util/blue_services_dialog.dart';
 import 'package:bluetrack/core/util/location_services_dialog.dart';
 import 'package:bluetrack/view/bluetooth/blue_config_page.dart';
+import 'package:bluetrack/view/bluetooth/blue_connection_page.dart';
 import 'package:bluetrack/view/home/components/custom_sections_button.dart';
 import 'package:bluetrack/view/mqtt/mqttConfigPage.dart';
 import 'package:bluetrack/view/pages/activity_monitor_page.dart';
@@ -165,49 +167,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Future<void> mqttConfigBottomSheetPage(BuildContext context) async {
-    var result = await showCupertinoModalBottomSheet(
-      // expand: true,
-      useRootNavigator: true,
-      backgroundColor: context.onBackground,
-      context: context,
-      builder:
-          (context) => SizedBox(
-            // height: context.phoneHeight() * .6,
-            child: const MqttConfigPage(),
-          ),
-    );
-
-    if (result != null && result is Map) {
-      final broker = result['broker'];
-      final topic = result['topic'];
-
-      await Future.delayed(Duration(microseconds: 500));
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => ActivityMonitorPage(broker: broker, topic: topic),
-        ),
-      );
-    }
-  }
-
-  Future<void> blueConfigConfigBottomSheetPage(BuildContext context) async {
-    var result = await showCupertinoModalBottomSheet(
-      // expand: true,
-      useRootNavigator: true,
-      enableDrag: false,
-      backgroundColor: context.onBackground,
-      context: context,
-      builder:
-          (context) => SizedBox(
-            // height: context.phoneHeight() * .6,
-            child: const BlueConfigPage(),
-          ),
     );
   }
 }

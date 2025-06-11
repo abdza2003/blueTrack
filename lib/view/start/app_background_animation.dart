@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class APPBakgroundAnimation extends StatelessWidget {
-  const APPBakgroundAnimation({super.key});
+  final List<Color>? colors;
+  const APPBakgroundAnimation({this.colors, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,14 @@ class APPBakgroundAnimation extends StatelessWidget {
               child: ShaderMask(
                 shaderCallback: (Rect bounds) {
                   return LinearGradient(
-                    colors: [
-                      HexColor('#CA7842').withOpacity(.8),
-                      HexColor('#CA7842').withOpacity(.75),
-                      HexColor('#CA7842').withOpacity(.7),
-                      HexColor('#CA7842').withOpacity(.65),
-                    ],
+                    colors:
+                        colors ??
+                        [
+                          HexColor('#CA7842').withOpacity(.8),
+                          HexColor('#CA7842').withOpacity(.75),
+                          HexColor('#CA7842').withOpacity(.7),
+                          HexColor('#CA7842').withOpacity(.65),
+                        ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ).createShader(bounds);

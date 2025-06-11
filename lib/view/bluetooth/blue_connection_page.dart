@@ -1,6 +1,12 @@
 import 'package:bluetrack/core/components/custom_scaffold.dart';
+import 'package:bluetrack/core/components/txt.dart';
+import 'package:bluetrack/core/constants/color_constant.dart';
+import 'package:bluetrack/core/constants/space_constant.dart';
+import 'package:bluetrack/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class BluetoothConnectionPage extends StatefulWidget {
   final BluetoothDevice device;
@@ -13,7 +19,7 @@ class BluetoothConnectionPage extends StatefulWidget {
 }
 
 class _BluetoothConnectionPageState extends State<BluetoothConnectionPage> {
-  String activity = 'unknown';
+  String activity = 'There is no data to receive at the moment.';
 
   @override
   void initState() {
@@ -67,37 +73,95 @@ class _BluetoothConnectionPageState extends State<BluetoothConnectionPage> {
     }
   }
 
-  String getImage(String act) {
+  getImage(String act) {
     switch (act) {
       case 'walking':
-        return 'https://cdn-icons-png.flaticon.com/512/684/684908.png';
+        return {
+          'path': '/walking.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently walking.',
+          'status': 'Walking',
+        };
       case 'running':
-        return 'https://cdn-icons-png.flaticon.com/512/1144/1144923.png';
+        return {
+          'path': '/running.json',
+          'height': 300.0,
+          "space": 0.0,
+          'message': 'The user is currently running.',
+          'status': 'Running',
+        };
+
       case 'sitting':
-        return 'https://cdn-icons-png.flaticon.com/512/2641/2641504.png';
+        return {
+          'path': '/sitting.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently sitting.',
+          'status': 'Sitting',
+        };
       case 'standing':
-        return 'https://cdn-icons-png.flaticon.com/512/4213/4213023.png';
+        return {
+          'path': '/standing.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently standing.',
+          'status': 'Standing',
+        };
       default:
-        return 'https://cdn-icons-png.flaticon.com/512/1995/1995574.png';
+        return {
+          'path': '/nothing.json',
+          'height': 200.0,
+          "space": 10.0,
+          'status': 'No Activity',
+
+          'message': 'No user activity detected at the moment.',
+        };
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl = getImage(activity);
+    final info = getImage(activity);
 
     return CustomScaffold(
       title: 'Activity Status',
       // appBar: AppBar(title: const Text('Activity Status')),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.network(imageUrl, width: 150, height: 150),
-            const SizedBox(height: 20),
-            Text(
-              'Current Activity: $activity',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            SpaceConstant.instance.heightXXXLarge,
+            SpaceConstant.instance.heightMedium,
+            SizedBox(
+              width: context.phoneWidth(),
+              height: (info['height'] as double).h,
+              child: Lottie.asset('assets/lottie${info['path']}'),
+            ),
+            SizedBox(height: (info['space'] as double).h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Txt(
+                text: info['status'].toString().toUpperCase(),
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.w),
+              child: Divider(
+                thickness: 1,
+                color: ColorConstants.instance.primary.withOpacity(.9),
+              ),
+            ),
+            SpaceConstant.instance.heightXSmall,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Txt(
+                text: info['message'],
+                fontSize: 14.sp,
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ],
         ),

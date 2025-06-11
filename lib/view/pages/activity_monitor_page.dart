@@ -1,6 +1,11 @@
 import 'package:bluetrack/core/components/custom_scaffold.dart';
 import 'package:bluetrack/core/components/txt.dart';
+import 'package:bluetrack/core/constants/color_constant.dart';
+import 'package:bluetrack/core/constants/space_constant.dart';
+import 'package:bluetrack/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -24,11 +29,14 @@ class ActivityMonitorPage extends StatefulWidget {
 class _ActivityMonitorPageState extends State<ActivityMonitorPage> {
   late MqttServerClient client;
   String activity = 'Waiting...';
-  String imageUrl = 'https://cdn-icons-png.flaticon.com/512/1995/1995574.png';
+  dynamic info;
 
   @override
   void initState() {
     super.initState();
+
+    info = getImage('nothing');
+
     connectToBroker();
   }
 
@@ -101,23 +109,55 @@ class _ActivityMonitorPageState extends State<ActivityMonitorPage> {
 
       setState(() {
         activity = cleanPayload;
-        imageUrl = getImage(cleanPayload);
+        info = getImage(cleanPayload);
       });
     });
   }
 
-  String getImage(String act) {
+  getImage(String act) {
     switch (act) {
       case 'walking':
-        return 'https://cdn-icons-png.flaticon.com/512/684/684908.png';
+        return {
+          'path': '/walking.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently walking.',
+          'status': 'Walking',
+        };
       case 'running':
-        return 'https://cdn-icons-png.flaticon.com/512/1144/1144923.png';
+        return {
+          'path': '/running.json',
+          'height': 300.0,
+          "space": 0.0,
+          'message': 'The user is currently running.',
+          'status': 'Running',
+        };
+
       case 'sitting':
-        return 'https://cdn-icons-png.flaticon.com/512/2641/2641504.png';
+        return {
+          'path': '/sitting.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently sitting.',
+          'status': 'Sitting',
+        };
       case 'standing':
-        return 'https://cdn-icons-png.flaticon.com/512/4213/4213023.png';
+        return {
+          'path': '/standing.json',
+          'height': 250.0,
+          "space": 50.0,
+          'message': 'The user is currently standing.',
+          'status': 'Standing',
+        };
       default:
-        return 'https://cdn-icons-png.flaticon.com/512/1995/1995574.png';
+        return {
+          'path': '/nothing.json',
+          'height': 200.0,
+          "space": 10.0,
+          'status': 'No Activity',
+
+          'message': 'No user activity detected at the moment.',
+        };
     }
   }
 
@@ -137,6 +177,8 @@ class _ActivityMonitorPageState extends State<ActivityMonitorPage> {
 
   @override
   Widget build(BuildContext context) {
+    info = getImage(activity);
+
     return CustomScaffold(
       title: 'Activity Monitor',
       // backgroundColor: Colors.black,
@@ -147,29 +189,59 @@ class _ActivityMonitorPageState extends State<ActivityMonitorPage> {
       // ),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Txt(
-              text: activity.toUpperCase(),
-              // style: const TextStyle(
-              fontSize: 26,
-              // color: Colors.white,
-              fontWeight: FontWeight.bold,
-              // ),
+            SpaceConstant.instance.heightXXLarge,
+            SizedBox(
+              width: context.phoneWidth(),
+              height: (info['height'] as double).h,
+              child: Lottie.asset('assets/lottie${info['path']}'),
             ),
-            const SizedBox(height: 20),
-            Image.network(imageUrl, height: 150),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
-              child: const Text('Back'),
+            SizedBox(height: (info['space'] as double).h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Txt(
+                text: info['status'].toString().toUpperCase(),
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40.w),
+              child: Divider(
+                thickness: 1,
+                color: ColorConstants.instance.primary.withOpacity(.9),
+              ),
+            ),
+            SpaceConstant.instance.heightXSmall,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Txt(
+                text: info['message'],
+                fontSize: 14.sp,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            // Txt(
+            //   text: activity.toUpperCase(),
+            //   // style: const TextStyle(
+            //   fontSize: 26,
+            //   // color: Colors.white,
+            //   fontWeight: FontWeight.bold,
+            //   // ),
+            // ),
+            // const SizedBox(height: 20),
+            // Image.network(imageUrl, height: 150),
+            // const SizedBox(height: 30),
+            // ElevatedButton(
+            //   onPressed: () => Navigator.pop(context),
+            //   style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
+            //   child: const Text('Back'),
+            // ),
+            SpaceConstant.instance.heightMedium,
             ElevatedButton(
               onPressed: disconnectClient,
               style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: const Text('Disconnect'),
+              child: Txt(text: 'Disconnect', color: Colors.white),
             ),
           ],
         ),

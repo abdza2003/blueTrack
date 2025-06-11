@@ -89,14 +89,14 @@ class _BlueConfigPageState extends State<BlueConfigPage> {
   }
 
   Future<void> _connectToDevice(BluetoothDevice device) async {
-    Navigator.pop(context);
+    Navigator.pop(context, selectedDevice);
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => BluetoothConnectionPage(device: device),
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (_) => BluetoothConnectionPage(device: device),
+    //   ),
+    // );
     // try {
     //   await device.disconnect(); // Ensure clean state
     //   await device.connect(timeout: const Duration(seconds: 10));
@@ -220,7 +220,9 @@ class _BlueConfigPageState extends State<BlueConfigPage> {
                                         color:
                                             isSelected
                                                 ? Colors.blue
-                                                : Colors.black54,
+                                                : context.inverse.withOpacity(
+                                                  .9,
+                                                ),
                                       ),
                                       SpaceConstant.instance.widthXSmall,
                                       Expanded(
@@ -232,6 +234,10 @@ class _BlueConfigPageState extends State<BlueConfigPage> {
                                               deviceName,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
+                                                color:
+                                                    isSelected
+                                                        ? Colors.blue
+                                                        : context.inverse,
                                               ),
                                             ),
                                             SpaceConstant
@@ -240,8 +246,13 @@ class _BlueConfigPageState extends State<BlueConfigPage> {
                                             Text(
                                               device.id.id,
                                               style: TextStyle(
-                                                color: Colors.grey.shade600,
                                                 fontSize: 12.sp,
+                                                color:
+                                                    isSelected
+                                                        ? Colors.blue
+                                                            .withOpacity(.8)
+                                                        : context.inverse
+                                                            .withOpacity(.8),
                                               ),
                                             ),
                                           ],
